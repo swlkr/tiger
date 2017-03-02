@@ -1,6 +1,9 @@
 (ns tiger.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defonce api-key (atom ""))
+
+(defn get-api-key []
+  (deref api-key))
+
+(defn set-api-key! [k]
+  (reset! api-key k))
