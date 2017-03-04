@@ -1,4 +1,5 @@
-(ns tiger.core)
+(ns tiger.core
+  (:require [clojure.tools.namespace.repl :as tn]))
 
 (defonce api-key (atom ""))
 
@@ -7,3 +8,6 @@
 
 (defn set-api-key! [k]
   (reset! api-key k))
+
+(defn refresh []
+  (tn/refresh))
