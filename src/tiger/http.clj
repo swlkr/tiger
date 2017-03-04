@@ -14,22 +14,24 @@
     :form-params {:form-params (clojure.walk/stringify-keys (:form-params m))}
     {:body ""}))
 
-(defn req
+(defn make-request
   ([method url]
    {:url (make-url "https://api.stripe.com/v1/" url)
     :headers {"Authorization" (str "Bearer " (get-api-key))}
     :method method})
   ([method url params]
    (let [body (req-body params)]
-     (-> (req method url)
+     (-> (make-request method url)
          (merge body)))))
 
-(def get (partial req :get))
-(def post (partial req :post))
+(def get (partial make-request :get))
+(def post (partial make-request :post))
+(def put (partial make-request :put))
+(def delete (partial make-request :delete))
 
-(defn res [{:keys [error status body] :as response}]
+(defn parse-response [{:keys [error status body] :as response}]
   (let [parsed-body (json/parse-string body true)]
     (assoc response :body parsed-body)))
 
-(defn request [m]
+(defn send! [m]
   (-> m http-kit/request deref))
