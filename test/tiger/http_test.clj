@@ -34,10 +34,10 @@
   (let [headers {"Authorization" "Bearer api-key"}
         _ (stripe/set-api-key! "api-key")]
     (testing "nils"
-      (is (= {:url "https://api.stripe.com/v1/" :method nil :headers headers} (req nil nil))))
+      (is (= {:url "https://api.stripe.com/v1/" :method nil :headers headers} (make-request nil nil))))
 
     (testing "2nd arity nils"
-      (is (= {:url "https://api.stripe.com/v1/" :method nil :headers headers :body ""} (req nil nil nil))))
+      (is (= {:url "https://api.stripe.com/v1/" :method nil :headers headers :body ""} (make-request nil nil nil))))
 
     (testing "valid get request"
       (is (= {:url "https://api.stripe.com/v1/hello" :method :get :headers headers} (get "/hello"))))
