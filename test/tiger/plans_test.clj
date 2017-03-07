@@ -1,14 +1,32 @@
 (ns tiger.plans-test
   (:require [clojure.test :refer :all]
-            [tiger.plans :as plans]
-            [tiger.fixtures :as fixtures]))
+            [tiger.plans :refer :all]
+            [tiger.fixtures :as fixtures]
+            [vcr-clj.core :refer [with-cassette]])
+  (:refer-clojure :exclude [list?]))
 
 (use-fixtures :each fixtures/set-key!)
 
+(deftest test-create!
+  (with-cassette :plans/test-create! [{:var #'tiger.http/send!}]
+    (is (true? (plan? (create! {:id "plan-id" :amount 4999 :interval "month" :name "plan-name" :currency "usd"}))))))
+
 (deftest test-list!
-  (is (= true (plans/list? (plans/list!)))))
+  (with-cassette :plans/test-list! [{:var #'tiger.http/send!}]
+    (testing "list response"
+      (is (= true (list? (list!)))))
+
+    (testing "list contents"
+      (is (= 1 (-> (list!) :data count))))))
 
 (deftest test-get!
-  (let [id "D9DB87B7-4F45-4D46-AEF6-7D7634CA807B"
-        plan (plans/get! id)]
-    (is (plans/plan? plan))))
+  (with-cassette :plans/test-get! [{:var #'tiger.http/send!}]
+    (is (= true (plan? (get! "plan-id"))))))
+
+(deftest test-update!
+  (with-cassette :plans/test-update! [{:var #'tiger.http/send!}]
+    (is (= "hello world" (-> (update! "plan-id" {:name "hello world"}) :name)))))
+
+(deftest test-delete!
+  (with-cassette :plans/test-delete! [{:var #'tiger.http/send!}]
+    (is (= {:deleted true :id "plan-id"} (delete! "plan-id")))))

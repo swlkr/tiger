@@ -5,4 +5,3 @@
 (defn set-key! [f]
   (stripe/set-api-key! (env :api-key))
   (f))
-

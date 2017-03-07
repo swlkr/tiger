@@ -9,35 +9,29 @@
 (defn list? [m]
   (utils/has-keys? m [:url :has_more :object :data]))
 
+(defn send! [req]
+  (-> req
+      http/send!
+      http/parse-response
+      :body))
+
 (defn list! []
   (-> (http/get "/plans")
-      http/send!
-      http/parse-response
-      :body))
+      send!))
 
 (defn get! [id]
-  (let [url (str "/plans/" id)]
-    (-> (http/get url)
-        http/send!
-        http/parse-response
-        :body)))
+  (-> (http/get (str "/plans/" id))
+      send!))
 
 (defn create! [m]
-  (-> (http/post "/plans" m)
-      http/send!
-      http/parse-response
-      :body))
+  (-> (http/post "/plans" {:form-params m})
+      send!))
 
 (defn update! [id m]
-  (let [url (str "/plans/" id)]
-    (-> (http/put url m)
-        http/send!
-        http/parse-response
-        :body)))
+  (-> (http/post (str "/plans/" id) {:form-params m})
+      send!))
 
 (defn delete! [id]
-  (let [url (str "/plans/" id)]
-    (-> (http/delete url)
-        http/send!
-        http/parse-response
-        :body)))
+  (-> (str "/plans/" id)
+      http/delete
+      send!))
