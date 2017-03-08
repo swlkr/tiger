@@ -1,0 +1,1 @@
+{:calls [{:var-name "tiger.http/send!", :arg-key [{:url "https://api.stripe.com/v1/customers/cus_AFQw5kDgoqexoN", :headers {"Authorization" "Bearer sk_test_U5NGYnt3J2oI6I82Pyosf6eq"}, :method :delete}], :return {:deleted true, :id "cus_AFQw5kDgoqexoN"}}]}
