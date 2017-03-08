@@ -33,5 +33,6 @@
   (let [parsed-body (json/parse-string body true)]
     (assoc response :body parsed-body)))
 
-(defn send! [m]
-  (-> m http-kit/request deref))
+(defn send! [request]
+  (-> request http-kit/request deref parse-response :body))
+

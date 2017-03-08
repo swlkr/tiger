@@ -1,0 +1,1 @@
+{:calls [{:var-name "tiger.http/send!", :arg-key [{:url "https://api.stripe.com/v1/events/", :headers {"Authorization" "Bearer sk_test_U5NGYnt3J2oI6I82Pyosf6eq"}, :method :get}], :return {:error {:type "invalid_request_error", :message "Unrecognized request URL (GET: /v1/events/). Please see https://stripe.com/docs or we can help at https://support.stripe.com/."}}}]}
