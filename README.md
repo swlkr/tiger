@@ -4,6 +4,17 @@ Yet another clojure stripe library
 
 ## Usage
 
+```bash
+lein plz tiger
+```
+
+or
+
+```clojure
+; add the following to :dependencies in your project.clj
+[tiger "1.0.1"]
+```
+
 ```clojure
 (ns your-project.core
   (:require [tiger.core :as stripe]))
