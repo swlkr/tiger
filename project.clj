@@ -1,4 +1,4 @@
-(defproject tiger "0.1.0-SNAPSHOT"
+(defproject tiger "1.0.0"
   :description "Yet another stripe library for clojure"
   :url "https://github.com/swlkr/tiger"
   :license {:name "Eclipse Public License"
