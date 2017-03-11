@@ -1,4 +1,4 @@
-(defproject tiger "1.0.0"
+(defproject tiger "1.0.1"
   :description "Yet another stripe library for clojure"
   :url "https://github.com/swlkr/tiger"
   :license {:name "Eclipse Public License"
@@ -10,4 +10,5 @@
                  [com.gfredericks/vcr-clj "0.4.9"]
                  [org.clojure/tools.namespace "0.2.11"]]
   :main tiger.core
-  :plugins [[lein-environ "1.1.0"]])
+  :plugins [[lein-environ "1.1.0"]]
+  :profiles {:uberjar {:aot :all}})

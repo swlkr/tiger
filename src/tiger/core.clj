@@ -1,5 +1,6 @@
 (ns tiger.core
-  (:require [clojure.tools.namespace.repl :as tn]))
+  (:require [clojure.tools.namespace.repl :as tn])
+  (:gen-class))
 
 (defonce api-key (atom ""))
 
