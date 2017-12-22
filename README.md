@@ -17,11 +17,11 @@ or
 
 ```clojure
 (ns your-project.core
-  (:require [tiger.core :as stripe]))
+  (:require [tiger.core :as stripe]
             [tiger.events :as events]
             [tiger.plans :as plans]
             [tiger.customers :as customers]
-            [tiger.subscriptions :as subscriptions]
+            [tiger.subscriptions :as subscriptions]))
  
 (stripe/set-api-key! "your api key")
 
